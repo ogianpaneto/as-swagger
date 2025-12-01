@@ -1,13 +1,18 @@
 from fastapi import FastAPI
+from datetime import datetime
+
 
 app = FastAPI()
 
 
 @app.get("/")
-def read_root():
-    return {"message": "Hello World"}
+def root():
+    return {
+        "message": "API de teste"
+    }
 
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/date/day")
+def get_date_day() -> dict:
+    return {
+        "datetime": datetime.now().strftime("%Y-%m-%d")
+    }
